@@ -1,0 +1,18 @@
+# Dependencias del Maquetador de EPUB Accesibles
+# Instalar con: pip install -r requirements.txt
+
+# Interfaz gráfica
+wxPython>=4.2.0
+
+# Generación de EPUB
+EbookLib>=0.18
+
+# Conversión de Markdown
+markdown>=3.4
+
+# Limpieza y normalización de HTML
+beautifulsoup4>=4.12
+lxml>=4.9
+
+# Para empaquetado (opcional, solo para desarrollo)
+# pyinstaller>=5.0
