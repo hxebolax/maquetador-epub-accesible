@@ -294,11 +294,16 @@ img {
 	text-align: center;
 	padding: 0;
 	margin: 0;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .portada img {
 	max-width: 100%;
 	max-height: 100vh;
+	object-fit: contain;
 }
 '''
 		
@@ -339,12 +344,81 @@ img {
 				media_type=portada.obtener_tipo_mime(),
 				content=contenido_imagen
 			)
+			# Marcar como imagen de portada en los metadatos
+			imagen_item.is_linear = False
 			libro.add_item(imagen_item)
 			
-			# Establecer como portada
-			libro.set_cover(nombre_archivo, contenido_imagen)
+			# Agregar metadato de portada
+			libro.add_metadata(None, 'meta', '', {'name': 'cover', 'content': 'cover-image'})
+			
+			# Crear página de portada personalizada con accesibilidad
+			alt_text = portada.texto_alternativo or "Portada del libro"
+			descripcion_larga = portada.descripcion_larga or ""
+			
+			# Construir el HTML de la imagen con accesibilidad
+			# nombre_archivo ya incluye "imagenes/", usar ruta relativa desde texto/
+			ruta_imagen = f"../{nombre_archivo}"
+			
+			# Si hay descripción larga, usar figure con figcaption
+			if descripcion_larga:
+				imagen_html = f'''<figure role="img" aria-labelledby="portada-desc">
+    <img src="{ruta_imagen}" alt="{alt_text}"/>
+    <figcaption id="portada-desc" class="visually-hidden">{descripcion_larga}</figcaption>
+  </figure>'''
+			else:
+				imagen_html = f'<img src="{ruta_imagen}" alt="{alt_text}"/>'
+			
+			portada_xhtml = f'''<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Portada</title>
+  <link rel="stylesheet" type="text/css" href="../css/estilos.css"/>
+  <style type="text/css">
+    * {{
+      margin: 0;
+      padding: 0;
+    }}
+    body {{
+      text-align: center;
+    }}
+    figure {{
+      margin: 0;
+      padding: 0;
+    }}
+    img {{
+      max-width: 100%;
+      max-height: 100%;
+    }}
+    .visually-hidden {{
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }}
+  </style>
+</head>
+<body epub:type="cover">
+  {imagen_html}
+</body>
+</html>'''
+			
+			portada_item = epub.EpubItem(
+				uid="cover",
+				file_name="texto/portada.xhtml",
+				media_type="application/xhtml+xml",
+				content=portada_xhtml.encode('utf-8')
+			)
+			libro.add_item(portada_item)
 			
 			resultado.archivos_generados.append(nombre_archivo)
+			resultado.archivos_generados.append("texto/portada.xhtml")
 			
 		except Exception as e:
 			resultado.advertencias.append(f"Error al agregar portada: {e}")
