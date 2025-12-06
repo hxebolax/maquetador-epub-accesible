@@ -13,7 +13,7 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 
 setup(
 	name="maquetador-epub-accesible",
-	version="1.0.0",
+	version="1.0.1",
 	author="@hxebolax",
 	author_email="xebolax@gmail.com",
 	description="Aplicación para crear libros EPUB 3 accesibles",

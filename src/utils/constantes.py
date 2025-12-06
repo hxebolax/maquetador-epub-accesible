@@ -123,4 +123,4 @@ VERSION_FORMATO_PROYECTO = "1.0"
 
 # Nombre de la aplicación
 NOMBRE_APP = "Maquetador EPUB Accesible"
-VERSION_APP = "1.0.0"
+VERSION_APP = "1.0.1"

@@ -5,6 +5,18 @@ Todos los cambios notables de este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.0.1] - 2025-12-06
+
+### Corregido
+- Corregida la visualización de la imagen de portada en el EPUB generado
+- Corregidas las rutas relativas de recursos (CSS e imágenes) en los archivos XHTML
+- Corregido el uso del texto alternativo de la portada (ahora usa el campo correcto `texto_alternativo`)
+
+### Mejorado
+- Añadido soporte para descripción larga accesible en la imagen de portada
+- La descripción larga se incluye como `figcaption` oculto visualmente pero accesible para lectores de pantalla
+- Mejorada la estructura XHTML de la portada para mejor compatibilidad con lectores EPUB
+
 ## [1.0.0] - 2025-12-06
 
 ### Añadido

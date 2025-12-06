@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "maquetador-epub-accesible"
-version = "1.0.0"
+version = "1.0.1"
 description = "Aplicación para crear libros EPUB 3 accesibles"
 readme = "README.md"
 license = {text = "MIT"}
