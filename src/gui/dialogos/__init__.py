@@ -12,6 +12,8 @@ from .dialogo_importacion_multiple import DialogoImportacionMultiple
 from .dialogo_manual import DialogoManual
 from .dialogo_atajos import DialogoAtajos
 from .dialogo_acerca import DialogoAcerca
+from .dialogo_nuevo_proyecto import DialogoNuevoProyecto
+from .dialogo_insertar_imagen import DialogoInsertarImagen
 
 __all__ = [
 	'DialogoMetadatos',
@@ -21,5 +23,7 @@ __all__ = [
 	'DialogoImportacionMultiple',
 	'DialogoManual',
 	'DialogoAtajos',
-	'DialogoAcerca'
+	'DialogoAcerca',
+	'DialogoNuevoProyecto',
+	'DialogoInsertarImagen'
 ]

@@ -1,0 +1,117 @@
+{
+	"app.title": "Maquetador EPUB Accessible",
+	"app.version": "Versió {version}",
+	
+	"menu.file": "&Fitxer",
+	"menu.file.new": "&Nou projecte\tCtrl+N",
+	"menu.file.open": "&Obrir projecte...\tCtrl+O",
+	"menu.file.save": "&Desar\tCtrl+S",
+	"menu.file.save_as": "Desar &com...\tCtrl+Shift+S",
+	"menu.file.import": "&Importar",
+	"menu.file.export": "&Exportar",
+	"menu.file.export.epub": "Exportar a &EPUB...\tCtrl+E",
+	"menu.file.export.pdf": "Exportar a &PDF...",
+	"menu.file.recent": "Projectes &recents",
+	"menu.file.exit": "&Sortir\tAlt+F4",
+	
+	"menu.edit": "&Edició",
+	"menu.edit.undo": "&Desfer\tCtrl+Z",
+	"menu.edit.redo": "&Refer\tCtrl+Y",
+	"menu.edit.cut": "Re&tallar\tCtrl+X",
+	"menu.edit.copy": "&Copiar\tCtrl+C",
+	"menu.edit.paste": "En&ganxar\tCtrl+V",
+	"menu.edit.select_all": "Seleccionar &tot\tCtrl+A",
+	
+	"menu.project": "&Projecte",
+	"menu.project.metadata": "&Metadades...\tCtrl+M",
+	"menu.project.accessibility": "&Accessibilitat...\tCtrl+Shift+A",
+	"menu.project.cover": "&Portada...",
+	"menu.project.validate": "&Validar projecte\tF5",
+	
+	"menu.section": "&Secció",
+	"menu.section.add": "&Afegir secció\tCtrl+Shift+N",
+	"menu.section.delete": "&Eliminar secció\tDelete",
+	"menu.section.rename": "&Reanomenar\tF2",
+	"menu.section.move_up": "Moure a&munt\tAlt+Up",
+	"menu.section.move_down": "Moure a&vall\tAlt+Down",
+	
+	"menu.view": "&Visualització",
+	"menu.view.preview": "&Vista prèvia\tF6",
+	
+	"menu.tools": "&Eines",
+	"menu.tools.preferences": "&Preferències...\tCtrl+,",
+	
+	"menu.help": "A&juda",
+	"menu.help.manual": "&Manual d'usuari\tF1",
+	"menu.help.shortcuts": "&Dreceres de teclat...",
+	"menu.help.about": "&Quant a...",
+	
+	"toolbar.new": "Nou",
+	"toolbar.open": "Obrir",
+	"toolbar.save": "Desar",
+	"toolbar.export": "Exportar EPUB",
+	"toolbar.preview": "Vista prèvia",
+	"toolbar.validate": "Validar",
+	
+	"panel.sections.title": "Estructura del llibre",
+	"panel.sections.add": "Afegir secció",
+	"panel.sections.delete": "Eliminar secció",
+	"panel.sections.empty": "Sense seccions. Afegiu una secció per començar.",
+	
+	"panel.editor.title": "Editor de contingut",
+	"panel.editor.mode_visual": "Visual",
+	"panel.editor.mode_code": "Codi",
+	"panel.editor.bold": "Negreta",
+	"panel.editor.italic": "Cursiva",
+	"panel.editor.underline": "Subratllat",
+	
+	"panel.logs.title": "Registre d'activitat",
+	"panel.logs.clear": "Netejar",
+	
+	"dialog.metadata.title": "Metadades del llibre",
+	"dialog.metadata.book_title": "Títol:",
+	"dialog.metadata.language": "Idioma:",
+	"dialog.metadata.publisher": "Editorial:",
+	
+	"dialog.accessibility.title": "Metadades d'accessibilitat",
+	
+	"dialog.cover.title": "Imatge de portada",
+	"dialog.cover.select": "Seleccionar imatge...",
+	"dialog.cover.alt_text": "Text alternatiu (obligatori):",
+	"dialog.cover.long_desc": "Descripció llarga (opcional):",
+	
+	"dialog.image.title": "Inserir imatge",
+	"dialog.image.alt_text": "Text alternatiu (obligatori):",
+	"dialog.image.alt_required": "El text alternatiu és obligatori per a l'accessibilitat",
+	
+	"dialog.preferences.title": "Preferències",
+	"dialog.preferences.language": "Idioma de la interfície:",
+	"dialog.preferences.language_restart": "Requereix reiniciar l'aplicació",
+	
+	"dialog.preview.title": "Vista prèvia EPUB",
+	"dialog.preview.previous": "Anterior",
+	"dialog.preview.next": "Següent",
+	"dialog.preview.refresh": "Actualitzar",
+	
+	"dialog.about.title": "Quant a",
+	"dialog.about.description": "Aplicació per crear llibres EPUB 3 accessibles",
+	
+	"status.ready": "Preparat",
+	"status.saving": "Desant...",
+	"status.saved": "Desat",
+	"status.exporting": "Exportant...",
+	"status.exported": "Exportat correctament",
+	
+	"error.file_not_found": "Fitxer no trobat: {path}",
+	"error.save_failed": "Error en desar el projecte",
+	
+	"confirm.delete_section": "Esteu segur que voleu eliminar aquesta secció?",
+	"confirm.discard_changes": "Hi ha canvis sense desar. Voleu descartar-los?",
+	
+	"button.ok": "D'acord",
+	"button.cancel": "Cancel·lar",
+	"button.yes": "Sí",
+	"button.no": "No",
+	"button.save": "Desar",
+	"button.close": "Tancar"
+}

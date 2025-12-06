@@ -12,17 +12,25 @@ class DialogoAtajos(wx.Dialog):
 	Diálogo accesible con la lista de atajos de teclado.
 	"""
 	
-	ATAJOS = """ATAJOS DE TECLADO - MAQUETADOR DE EPUB ACCESIBLES
+	ATAJOS = """ATAJOS DE TECLADO - MAQUETADOR DE EPUB ACCESIBLES v2.0
 
 ==============================================
 ARCHIVO
 ==============================================
-Ctrl+N          Nuevo proyecto
+Ctrl+N          Nuevo proyecto (con plantillas)
 Ctrl+O          Abrir proyecto
 Ctrl+S          Guardar proyecto
 Ctrl+Shift+S    Guardar como
 Ctrl+E          Exportar EPUB
 Alt+F4          Salir de la aplicación
+
+==============================================
+EXPORTACIÓN
+==============================================
+Ctrl+E          Exportar a EPUB
+                Exportar a PDF (menú)
+                Exportar a MOBI (menú)
+                Exportar a HTML (menú)
 
 ==============================================
 EDICIÓN
@@ -34,13 +42,26 @@ Ctrl+C          Copiar
 Ctrl+V          Pegar
 
 ==============================================
+EDITOR WYSIWYG
+==============================================
+Ctrl+B          Negrita
+Ctrl+I          Cursiva
+Ctrl+U          Subrayado
+
+==============================================
 PROYECTO
 ==============================================
 Ctrl+Shift+A    Agregar sección
 Ctrl+I          Importar archivo
-Ctrl+Shift+I    Importar múltiples archivos
+Ctrl+Alt+I      Importar múltiples archivos
+Ctrl+Shift+I    Insertar imagen en sección
 Ctrl+M          Metadatos del libro
 Ctrl+Shift+M    Metadatos de accesibilidad
+
+==============================================
+VER
+==============================================
+F6              Vista previa del EPUB
 
 ==============================================
 HERRAMIENTAS
@@ -68,6 +89,17 @@ PANEL DE EDICIÓN
 Tab             Siguiente control
 Shift+Tab       Control anterior
 Ctrl+S          Guardar cambios de la sección
+Ctrl+Shift+I    Insertar imagen
+
+==============================================
+VISTA PREVIA
+==============================================
+Flecha Izq.     Sección anterior
+Flecha Der.     Sección siguiente
+Re Pág          Sección anterior
+Av Pág          Sección siguiente
+F5              Actualizar vista previa
+Escape          Cerrar vista previa
 
 ==============================================
 DIÁLOGOS
@@ -83,7 +115,7 @@ NAVEGACIÓN GENERAL
 Tab             Siguiente control
 Shift+Tab       Control anterior
 Alt+Letra       Activar control con acelerador
-F6              Cambiar entre paneles
+F6              Vista previa / Cambiar paneles
 """
 	
 	def __init__(self, parent):

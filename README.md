@@ -25,6 +25,15 @@
 - **Metadatos Dublin Core**: Gestión completa de metadatos bibliográficos
 - **Validación integrada**: Soporte para EPUBCheck y Ace by DAISY
 
+### Novedades en v1.0.2
+
+- **🌍 Internacionalización**: Disponible en 5 idiomas (español, inglés, francés, portugués, catalán)
+- **📝 Editor WYSIWYG**: Editor visual con formato en tiempo real
+- **👁️ Vista previa**: Previsualiza tu libro antes de exportar (F6)
+- **📚 Plantillas**: 4 plantillas predefinidas (Novela, Manual, Poemario, Ensayo)
+- **🖼️ Imágenes en secciones**: Inserta imágenes con texto alternativo obligatorio
+- **📄 Exportación múltiple**: Exporta a PDF, MOBI (Kindle) y HTML además de EPUB
+
 ## 📋 Requisitos
 
 - Python 3.8 o superior
@@ -100,15 +109,20 @@ Descarga el ejecutable desde la sección [Releases](https://github.com/hxebolax/
 | Abrir proyecto | Ctrl+O |
 | Guardar | Ctrl+S |
 | Exportar EPUB | Ctrl+E |
+| Vista previa | F6 |
 | Agregar sección | Ctrl+Shift+A |
 | Importar archivo | Ctrl+I |
-| Importar múltiples | Ctrl+Shift+I |
+| Importar múltiples | Ctrl+Alt+I |
+| Insertar imagen | Ctrl+Shift+I |
 | Metadatos | Ctrl+M |
 | Accesibilidad | Ctrl+Shift+M |
 | Validar | F5 |
 | Manual de ayuda | F1 |
 | Mover sección arriba | Alt+↑ |
 | Mover sección abajo | Alt+↓ |
+| Negrita (WYSIWYG) | Ctrl+B |
+| Cursiva (WYSIWYG) | Ctrl+I |
+| Subrayado (WYSIWYG) | Ctrl+U |
 
 ## ♿ Accesibilidad
 
@@ -137,6 +151,8 @@ Los EPUB generados incluyen:
 - **Markdown** - Conversión de texto Markdown
 - **BeautifulSoup** - Procesamiento de HTML
 - **lxml** - Procesamiento XML
+- **WeasyPrint** - Generación de PDF (opcional)
+- **Calibre** - Conversión a MOBI (opcional, externo)
 
 ## 📁 Estructura del proyecto
 
@@ -153,19 +169,30 @@ maquetador-epub-accesible/
 │   │   ├── seccion.py
 │   │   ├── metadatos.py
 │   │   ├── imagen.py
-│   │   └── preferencias.py
+│   │   ├── preferencias.py
+│   │   └── plantilla.py      # Plantillas de libro
 │   ├── servicios/        # Lógica de negocio
 │   │   ├── servicio_epub.py
 │   │   ├── servicio_xhtml.py
 │   │   ├── servicio_importacion.py
 │   │   ├── servicio_validacion.py
-│   │   └── servicio_persistencia.py
+│   │   ├── servicio_persistencia.py
+│   │   ├── servicio_i18n.py      # Internacionalización
+│   │   └── servicio_exportacion.py  # PDF, MOBI, HTML
 │   ├── gui/              # Interfaz gráfica
 │   │   ├── ventana_principal.py
 │   │   ├── panel_secciones.py
 │   │   ├── panel_editor.py
+│   │   ├── panel_editor_wysiwyg.py  # Editor visual
 │   │   ├── panel_logs.py
+│   │   ├── ventana_vista_previa.py  # Vista previa
 │   │   └── dialogos/
+│   ├── locales/          # Archivos de traducción
+│   │   ├── es.json
+│   │   ├── en.json
+│   │   ├── fr.json
+│   │   ├── pt.json
+│   │   └── ca.json
 │   ├── utils/            # Utilidades
 │   │   ├── constantes.py
 │   │   └── helpers.py

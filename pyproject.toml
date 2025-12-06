@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "maquetador-epub-accesible"
-version = "1.0.1"
+version = "1.0.2"
 description = "Aplicación para crear libros EPUB 3 accesibles"
 readme = "README.md"
 license = {text = "MIT"}
@@ -38,12 +38,14 @@ dependencies = [
     "markdown>=3.4",
     "beautifulsoup4>=4.12",
     "lxml>=4.9",
+    "weasyprint>=60.0",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pyinstaller>=5.0",
     "pytest>=7.0",
+    "hypothesis>=6.0",
 ]
 
 [project.urls]

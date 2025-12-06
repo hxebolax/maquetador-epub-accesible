@@ -9,6 +9,7 @@ from .seccion import Seccion, TipoSeccion
 from .metadatos import MetadatosDC, MetadatosAccesibilidad
 from .imagen import Imagen
 from .preferencias import Preferencias
+from .plantilla import Plantilla, PlantillaSeccion, ServicioPlantillas
 
 __all__ = [
 	'Proyecto',
@@ -17,5 +18,8 @@ __all__ = [
 	'MetadatosDC',
 	'MetadatosAccesibilidad',
 	'Imagen',
-	'Preferencias'
+	'Preferencias',
+	'Plantilla',
+	'PlantillaSeccion',
+	'ServicioPlantillas'
 ]

@@ -34,6 +34,8 @@ class Preferencias:
 		# Opciones de interfaz
 		self.confirmar_eliminacion: bool = True
 		self.mostrar_panel_logs: bool = True
+		self.idioma: str = "es"  # Idioma de la interfaz
+		self.modo_editor: str = "codigo"  # codigo o visual
 		
 		# Último proyecto abierto
 		self.ultimo_proyecto: Optional[str] = None
@@ -41,6 +43,9 @@ class Preferencias:
 		# Proyectos recientes
 		self.proyectos_recientes: list = []
 		self.max_proyectos_recientes: int = 10
+		
+		# Directorio de plantillas personalizadas
+		self.directorio_plantillas: str = ""
 	
 	def establecer_directorio_importacion(self, ruta: str) -> None:
 		"""
@@ -150,9 +155,12 @@ class Preferencias:
 			'intervalo_guardado': self.intervalo_guardado,
 			'confirmar_eliminacion': self.confirmar_eliminacion,
 			'mostrar_panel_logs': self.mostrar_panel_logs,
+			'idioma': self.idioma,
+			'modo_editor': self.modo_editor,
 			'ultimo_proyecto': self.ultimo_proyecto,
 			'proyectos_recientes': self.proyectos_recientes.copy(),
-			'max_proyectos_recientes': self.max_proyectos_recientes
+			'max_proyectos_recientes': self.max_proyectos_recientes,
+			'directorio_plantillas': self.directorio_plantillas
 		}
 	
 	@classmethod
@@ -174,9 +182,12 @@ class Preferencias:
 		prefs.intervalo_guardado = data.get('intervalo_guardado', 300)
 		prefs.confirmar_eliminacion = data.get('confirmar_eliminacion', True)
 		prefs.mostrar_panel_logs = data.get('mostrar_panel_logs', True)
+		prefs.idioma = data.get('idioma', 'es')
+		prefs.modo_editor = data.get('modo_editor', 'codigo')
 		prefs.ultimo_proyecto = data.get('ultimo_proyecto')
 		prefs.proyectos_recientes = data.get('proyectos_recientes', []).copy()
 		prefs.max_proyectos_recientes = data.get('max_proyectos_recientes', 10)
+		prefs.directorio_plantillas = data.get('directorio_plantillas', '')
 		return prefs
 	
 	def guardar(self, ruta: Optional[str] = None) -> bool:

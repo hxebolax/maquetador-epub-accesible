@@ -8,6 +8,7 @@ import wx
 import os
 
 from ...modelo.preferencias import Preferencias
+from ...servicios.servicio_i18n import ServicioI18n
 
 
 class DialogoPreferencias(wx.Dialog):
@@ -41,6 +42,24 @@ class DialogoPreferencias(wx.Dialog):
 	
 	def _crear_controles(self) -> None:
 		"""Crea los controles del diálogo."""
+		# Idioma
+		self.lbl_idioma = wx.StaticText(
+			self,
+			label="&Idioma de la interfaz:"
+		)
+		self.i18n = ServicioI18n()
+		idiomas = self.i18n.obtener_idiomas_disponibles()
+		self.idiomas_codigos = [codigo for codigo, _ in idiomas]
+		self.idiomas_nombres = [nombre for _, nombre in idiomas]
+		self.cmb_idioma = wx.Choice(self, choices=self.idiomas_nombres)
+		self.cmb_idioma.SetName("Idioma de la interfaz")
+		
+		self.lbl_idioma_nota = wx.StaticText(
+			self,
+			label="(Requiere reiniciar la aplicación)"
+		)
+		self.lbl_idioma_nota.SetForegroundColour(wx.Colour(128, 128, 128))
+		
 		# Directorios
 		self.lbl_dir_proyectos = wx.StaticText(
 			self,
@@ -99,6 +118,16 @@ class DialogoPreferencias(wx.Dialog):
 	
 	def _configurar_layout(self) -> None:
 		"""Configura el layout del diálogo."""
+		# Idioma
+		box_idioma = wx.StaticBox(self, label="Idioma")
+		sizer_idioma = wx.StaticBoxSizer(box_idioma, wx.VERTICAL)
+		
+		sizer_idioma_row = wx.BoxSizer(wx.HORIZONTAL)
+		sizer_idioma_row.Add(self.lbl_idioma, 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
+		sizer_idioma_row.Add(self.cmb_idioma, 0, wx.RIGHT, 10)
+		sizer_idioma_row.Add(self.lbl_idioma_nota, 0, wx.ALIGN_CENTER_VERTICAL)
+		sizer_idioma.Add(sizer_idioma_row, 0, wx.ALL, 5)
+		
 		# Directorios
 		box_dirs = wx.StaticBox(self, label="Directorios")
 		sizer_dirs = wx.StaticBoxSizer(box_dirs, wx.VERTICAL)
@@ -141,7 +170,8 @@ class DialogoPreferencias(wx.Dialog):
 		
 		# Sizer principal
 		sizer = wx.BoxSizer(wx.VERTICAL)
-		sizer.Add(sizer_dirs, 0, wx.EXPAND | wx.ALL, 10)
+		sizer.Add(sizer_idioma, 0, wx.EXPAND | wx.ALL, 10)
+		sizer.Add(sizer_dirs, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
 		sizer.Add(sizer_comp, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
 		sizer.Add(sizer_botones, 0, wx.EXPAND | wx.ALL, 10)
 		
@@ -149,6 +179,14 @@ class DialogoPreferencias(wx.Dialog):
 	
 	def _cargar_datos(self) -> None:
 		"""Carga los datos en los controles."""
+		# Idioma
+		idioma_actual = self.preferencias.idioma
+		if idioma_actual in self.idiomas_codigos:
+			idx = self.idiomas_codigos.index(idioma_actual)
+			self.cmb_idioma.SetSelection(idx)
+		else:
+			self.cmb_idioma.SetSelection(0)  # Español por defecto
+		
 		self.txt_dir_proyectos.SetValue(self.preferencias.directorio_proyectos)
 		self.txt_dir_importacion.SetValue(self.preferencias.directorio_importacion)
 		self.txt_dir_exportacion.SetValue(self.preferencias.directorio_exportacion)
@@ -200,6 +238,11 @@ class DialogoPreferencias(wx.Dialog):
 	
 	def on_aceptar(self, event) -> None:
 		"""Guarda los cambios y cierra el diálogo."""
+		# Idioma
+		idx = self.cmb_idioma.GetSelection()
+		if idx >= 0 and idx < len(self.idiomas_codigos):
+			self.preferencias.idioma = self.idiomas_codigos[idx]
+		
 		self.preferencias.directorio_proyectos = self.txt_dir_proyectos.GetValue()
 		self.preferencias.directorio_importacion = self.txt_dir_importacion.GetValue()
 		self.preferencias.directorio_exportacion = self.txt_dir_exportacion.GetValue()

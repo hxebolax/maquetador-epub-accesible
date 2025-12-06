@@ -5,9 +5,11 @@ Editor de contenido accesible para las secciones del libro.
 """
 
 import wx
+import html
 from typing import Optional
 
 from ..modelo.seccion import Seccion, TipoSeccion
+from ..modelo.imagen import Imagen
 
 
 class PanelEditor(wx.Panel):
@@ -90,6 +92,9 @@ class PanelEditor(wx.Panel):
 		self.btn_cita = wx.Button(self, label="&Cita", size=(60, -1))
 		self.btn_cita.SetToolTip("Cita (blockquote)")
 		
+		self.btn_imagen = wx.Button(self, label="&Imagen", size=(70, -1))
+		self.btn_imagen.SetToolTip("Insertar imagen (Ctrl+Shift+I)")
+		
 		# Editor de contenido
 		self.lbl_contenido = wx.StaticText(self, label="&Contenido:")
 		self.txt_contenido = wx.TextCtrl(
@@ -128,7 +133,8 @@ class PanelEditor(wx.Panel):
 		sizer_formato.Add(self.btn_h3, 0, wx.RIGHT, 10)
 		sizer_formato.Add(self.btn_parrafo, 0, wx.RIGHT, 2)
 		sizer_formato.Add(self.btn_lista, 0, wx.RIGHT, 2)
-		sizer_formato.Add(self.btn_cita, 0)
+		sizer_formato.Add(self.btn_cita, 0, wx.RIGHT, 10)
+		sizer_formato.Add(self.btn_imagen, 0)
 		
 		# Sizer principal
 		sizer = wx.BoxSizer(wx.VERTICAL)
@@ -155,8 +161,12 @@ class PanelEditor(wx.Panel):
 		self.btn_parrafo.Bind(wx.EVT_BUTTON, self.on_insertar_parrafo)
 		self.btn_lista.Bind(wx.EVT_BUTTON, self.on_insertar_lista)
 		self.btn_cita.Bind(wx.EVT_BUTTON, self.on_insertar_cita)
+		self.btn_imagen.Bind(wx.EVT_BUTTON, self.on_insertar_imagen)
 		
 		self.btn_guardar.Bind(wx.EVT_BUTTON, self.on_guardar)
+		
+		# Atajo de teclado para insertar imagen
+		self.txt_contenido.Bind(wx.EVT_KEY_DOWN, self.on_key_down)
 	
 	def _habilitar_controles(self, habilitar: bool) -> None:
 		"""
@@ -175,6 +185,7 @@ class PanelEditor(wx.Panel):
 		self.btn_parrafo.Enable(habilitar)
 		self.btn_lista.Enable(habilitar)
 		self.btn_cita.Enable(habilitar)
+		self.btn_imagen.Enable(habilitar)
 		self.btn_guardar.Enable(habilitar)
 	
 	def cargar_seccion(self, seccion: Optional[Seccion]) -> None:
@@ -312,3 +323,118 @@ class PanelEditor(wx.Panel):
 		
 		self.contenido_modificado = True
 		self.txt_contenido.SetFocus()
+	
+	def on_key_down(self, event) -> None:
+		"""Maneja atajos de teclado en el editor."""
+		# Ctrl+Shift+I para insertar imagen
+		if event.ControlDown() and event.ShiftDown() and event.GetKeyCode() == ord('I'):
+			self.on_insertar_imagen(None)
+		else:
+			event.Skip()
+	
+	def on_insertar_imagen(self, event) -> None:
+		"""Muestra el diálogo para insertar una imagen."""
+		if not self.seccion_actual:
+			return
+		
+		from .dialogos.dialogo_insertar_imagen import DialogoInsertarImagen
+		
+		# Obtener directorio inicial de preferencias
+		directorio = self.ventana_principal.preferencias.directorio_importacion
+		
+		dialogo = DialogoInsertarImagen(
+			self,
+			imagen_existente=None,
+			directorio_inicial=directorio
+		)
+		
+		if dialogo.ShowModal() == wx.ID_OK:
+			imagen = dialogo.obtener_imagen()
+			if imagen:
+				self.insertar_imagen(imagen)
+		
+		dialogo.Destroy()
+	
+	def insertar_imagen(self, imagen: Imagen) -> None:
+		"""
+		Inserta una imagen en el contenido.
+		
+		Args:
+			imagen: Imagen a insertar
+		"""
+		if not self.seccion_actual:
+			return
+		
+		# Agregar imagen a la sección
+		self.seccion_actual.agregar_imagen(imagen)
+		
+		# Generar XHTML para la imagen
+		xhtml = self._generar_xhtml_imagen(imagen)
+		
+		# Insertar en el editor
+		self.txt_contenido.WriteText(xhtml)
+		
+		self.contenido_modificado = True
+		self.ventana_principal.registrar_log(f"Imagen insertada: {imagen.obtener_nombre_archivo()}")
+	
+	def _generar_xhtml_imagen(self, imagen: Imagen) -> str:
+		"""
+		Genera el XHTML para una imagen con accesibilidad.
+		
+		Args:
+			imagen: Imagen para generar XHTML
+		
+		Returns:
+			str: XHTML de la imagen
+		"""
+		alt_text = html.escape(imagen.texto_alternativo)
+		# Ruta relativa para el EPUB
+		src = f"../imagenes/{imagen.obtener_nombre_epub()}"
+		
+		if imagen.descripcion_larga:
+			# Con descripción larga, usar figure
+			desc_id = f"desc-{imagen.id}"
+			desc_text = html.escape(imagen.descripcion_larga)
+			return f'''<figure>
+  <img src="{src}" alt="{alt_text}" aria-describedby="{desc_id}"/>
+  <figcaption id="{desc_id}">{desc_text}</figcaption>
+</figure>'''
+		else:
+			# Sin descripción larga, solo img
+			return f'<img src="{src}" alt="{alt_text}"/>'
+	
+	def editar_imagen(self, imagen: Imagen) -> None:
+		"""
+		Abre el diálogo para editar una imagen existente.
+		
+		Args:
+			imagen: Imagen a editar
+		"""
+		from .dialogos.dialogo_insertar_imagen import DialogoInsertarImagen
+		
+		dialogo = DialogoInsertarImagen(
+			self,
+			imagen_existente=imagen
+		)
+		
+		if dialogo.ShowModal() == wx.ID_OK:
+			imagen_editada = dialogo.obtener_imagen()
+			if imagen_editada:
+				self.contenido_modificado = True
+				self.ventana_principal.registrar_log(f"Imagen editada: {imagen.obtener_nombre_archivo()}")
+		
+		dialogo.Destroy()
+	
+	def eliminar_imagen(self, imagen: Imagen) -> None:
+		"""
+		Elimina una imagen de la sección.
+		
+		Args:
+			imagen: Imagen a eliminar
+		"""
+		if not self.seccion_actual:
+			return
+		
+		self.seccion_actual.eliminar_imagen(imagen.id)
+		self.contenido_modificado = True
+		self.ventana_principal.registrar_log(f"Imagen eliminada: {imagen.obtener_nombre_archivo()}")

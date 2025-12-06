@@ -1,0 +1,117 @@
+{
+	"app.title": "Criador EPUB Acessível",
+	"app.version": "Versão {version}",
+	
+	"menu.file": "&Arquivo",
+	"menu.file.new": "&Novo projeto\tCtrl+N",
+	"menu.file.open": "&Abrir projeto...\tCtrl+O",
+	"menu.file.save": "&Salvar\tCtrl+S",
+	"menu.file.save_as": "Salvar &como...\tCtrl+Shift+S",
+	"menu.file.import": "&Importar",
+	"menu.file.export": "&Exportar",
+	"menu.file.export.epub": "Exportar para &EPUB...\tCtrl+E",
+	"menu.file.export.pdf": "Exportar para &PDF...",
+	"menu.file.recent": "Projetos &recentes",
+	"menu.file.exit": "&Sair\tAlt+F4",
+	
+	"menu.edit": "&Editar",
+	"menu.edit.undo": "&Desfazer\tCtrl+Z",
+	"menu.edit.redo": "&Refazer\tCtrl+Y",
+	"menu.edit.cut": "Cor&tar\tCtrl+X",
+	"menu.edit.copy": "&Copiar\tCtrl+C",
+	"menu.edit.paste": "Co&lar\tCtrl+V",
+	"menu.edit.select_all": "Selecionar &tudo\tCtrl+A",
+	
+	"menu.project": "&Projeto",
+	"menu.project.metadata": "&Metadados...\tCtrl+M",
+	"menu.project.accessibility": "&Acessibilidade...\tCtrl+Shift+A",
+	"menu.project.cover": "&Capa...",
+	"menu.project.validate": "&Validar projeto\tF5",
+	
+	"menu.section": "&Seção",
+	"menu.section.add": "&Adicionar seção\tCtrl+Shift+N",
+	"menu.section.delete": "&Excluir seção\tDelete",
+	"menu.section.rename": "&Renomear\tF2",
+	"menu.section.move_up": "Mover para &cima\tAlt+Up",
+	"menu.section.move_down": "Mover para &baixo\tAlt+Down",
+	
+	"menu.view": "&Visualizar",
+	"menu.view.preview": "&Pré-visualização\tF6",
+	
+	"menu.tools": "&Ferramentas",
+	"menu.tools.preferences": "&Preferências...\tCtrl+,",
+	
+	"menu.help": "A&juda",
+	"menu.help.manual": "&Manual do usuário\tF1",
+	"menu.help.shortcuts": "&Atalhos de teclado...",
+	"menu.help.about": "&Sobre...",
+	
+	"toolbar.new": "Novo",
+	"toolbar.open": "Abrir",
+	"toolbar.save": "Salvar",
+	"toolbar.export": "Exportar EPUB",
+	"toolbar.preview": "Pré-visualização",
+	"toolbar.validate": "Validar",
+	
+	"panel.sections.title": "Estrutura do livro",
+	"panel.sections.add": "Adicionar seção",
+	"panel.sections.delete": "Excluir seção",
+	"panel.sections.empty": "Sem seções. Adicione uma seção para começar.",
+	
+	"panel.editor.title": "Editor de conteúdo",
+	"panel.editor.mode_visual": "Visual",
+	"panel.editor.mode_code": "Código",
+	"panel.editor.bold": "Negrito",
+	"panel.editor.italic": "Itálico",
+	"panel.editor.underline": "Sublinhado",
+	
+	"panel.logs.title": "Registro de atividade",
+	"panel.logs.clear": "Limpar",
+	
+	"dialog.metadata.title": "Metadados do livro",
+	"dialog.metadata.book_title": "Título:",
+	"dialog.metadata.language": "Idioma:",
+	"dialog.metadata.publisher": "Editora:",
+	
+	"dialog.accessibility.title": "Metadados de acessibilidade",
+	
+	"dialog.cover.title": "Imagem de capa",
+	"dialog.cover.select": "Selecionar imagem...",
+	"dialog.cover.alt_text": "Texto alternativo (obrigatório):",
+	"dialog.cover.long_desc": "Descrição longa (opcional):",
+	
+	"dialog.image.title": "Inserir imagem",
+	"dialog.image.alt_text": "Texto alternativo (obrigatório):",
+	"dialog.image.alt_required": "O texto alternativo é obrigatório para acessibilidade",
+	
+	"dialog.preferences.title": "Preferências",
+	"dialog.preferences.language": "Idioma da interface:",
+	"dialog.preferences.language_restart": "Requer reiniciar o aplicativo",
+	
+	"dialog.preview.title": "Pré-visualização EPUB",
+	"dialog.preview.previous": "Anterior",
+	"dialog.preview.next": "Próximo",
+	"dialog.preview.refresh": "Atualizar",
+	
+	"dialog.about.title": "Sobre",
+	"dialog.about.description": "Aplicativo para criar livros EPUB 3 acessíveis",
+	
+	"status.ready": "Pronto",
+	"status.saving": "Salvando...",
+	"status.saved": "Salvo",
+	"status.exporting": "Exportando...",
+	"status.exported": "Exportado com sucesso",
+	
+	"error.file_not_found": "Arquivo não encontrado: {path}",
+	"error.save_failed": "Erro ao salvar o projeto",
+	
+	"confirm.delete_section": "Tem certeza de que deseja excluir esta seção?",
+	"confirm.discard_changes": "Há alterações não salvas. Deseja descartá-las?",
+	
+	"button.ok": "OK",
+	"button.cancel": "Cancelar",
+	"button.yes": "Sim",
+	"button.no": "Não",
+	"button.save": "Salvar",
+	"button.close": "Fechar"
+}

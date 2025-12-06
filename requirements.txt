@@ -14,5 +14,11 @@ markdown>=3.4
 beautifulsoup4>=4.12
 lxml>=4.9
 
+# Exportación a PDF
+weasyprint>=60.0
+
+# Testing basado en propiedades
+hypothesis>=6.0
+
 # Para empaquetado (opcional, solo para desarrollo)
 # pyinstaller>=5.0

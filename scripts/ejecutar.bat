@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 >nul 2>&1
 REM Script para ejecutar la aplicacion
 REM Maquetador de EPUB Accesibles
 

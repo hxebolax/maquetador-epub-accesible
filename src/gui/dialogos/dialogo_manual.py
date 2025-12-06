@@ -12,7 +12,7 @@ class DialogoManual(wx.Dialog):
 	Diálogo accesible con el manual de uso de la aplicación.
 	"""
 	
-	MANUAL = """MAQUETADOR DE EPUB ACCESIBLES - MANUAL DE USO
+	MANUAL = """MAQUETADOR DE EPUB ACCESIBLES v2.0 - MANUAL DE USO
 
 ==============================================
 1. INTRODUCCIÓN
@@ -22,13 +22,22 @@ Esta aplicación permite crear libros EPUB 3 totalmente accesibles, cumpliendo c
 
 La interfaz está diseñada para ser completamente usable con teclado y lectores de pantalla como NVDA, JAWS o Narrator.
 
+NOVEDADES EN v2.0:
+- Soporte para 5 idiomas (español, inglés, francés, portugués, catalán)
+- Plantillas de libro predefinidas
+- Editor WYSIWYG con formato visual
+- Vista previa del EPUB (F6)
+- Exportación a PDF, MOBI y HTML
+- Inserción de imágenes en secciones
+
 ==============================================
 2. GESTIÓN DE PROYECTOS
 ==============================================
 
 2.1 Crear un nuevo proyecto
 - Use Ctrl+N o el menú Archivo > Nuevo proyecto
-- Se creará un proyecto vacío con metadatos por defecto
+- Seleccione una plantilla o cree un proyecto en blanco
+- Plantillas disponibles: Novela, Manual técnico, Poemario, Ensayo
 
 2.2 Abrir un proyecto existente
 - Use Ctrl+O o el menú Archivo > Abrir proyecto
@@ -38,34 +47,56 @@ La interfaz está diseñada para ser completamente usable con teclado y lectores
 - Use Ctrl+S para guardar en la ubicación actual
 - Use Ctrl+Shift+S para guardar con otro nombre
 
-2.4 Exportar a EPUB
-- Use Ctrl+E o el menú Archivo > Exportar EPUB
-- Seleccione la ubicación y nombre del archivo EPUB
-- La aplicación validará el proyecto antes de exportar
+2.4 Guardar como plantilla
+- Use el menú Proyecto > Guardar como plantilla
+- Cree plantillas personalizadas desde su proyecto actual
 
 ==============================================
-3. ESTRUCTURA DEL LIBRO
+3. EXPORTACIÓN
 ==============================================
 
-3.1 Panel de secciones
+3.1 Exportar a EPUB
+- Use Ctrl+E o el menú Archivo > Exportar > EPUB
+- Formato estándar para lectores de ebooks
+
+3.2 Exportar a PDF
+- Use el menú Archivo > Exportar > PDF
+- Requiere WeasyPrint instalado
+- Genera PDF con marcadores de navegación
+
+3.3 Exportar a MOBI (Kindle)
+- Use el menú Archivo > Exportar > MOBI
+- Requiere Calibre instalado
+- Compatible con dispositivos Kindle
+
+3.4 Exportar a HTML
+- Use el menú Archivo > Exportar > HTML
+- Genera carpeta con archivos HTML navegables
+- Incluye index.html con índice
+
+==============================================
+4. ESTRUCTURA DEL LIBRO
+==============================================
+
+4.1 Panel de secciones
 El panel izquierdo muestra la estructura del libro en forma de árbol.
 
-3.2 Agregar secciones
+4.2 Agregar secciones
 - Use Ctrl+Shift+A o el botón "Agregar"
 - Seleccione el tipo de sección (capítulo, prólogo, etc.)
 - Ingrese el título de la sección
 
-3.3 Importar contenido
+4.3 Importar contenido
 - Use Ctrl+I para importar un archivo individual
-- Use Ctrl+Shift+I para importar múltiples archivos
+- Use Ctrl+Alt+I para importar múltiples archivos
 - Formatos soportados: TXT, Markdown (.md), HTML
 
-3.4 Organizar secciones
+4.4 Organizar secciones
 - Use Alt+Flecha Arriba/Abajo para mover secciones
 - Use F2 para renombrar una sección
 - Use Delete para eliminar una sección
 
-3.5 Tipos de sección disponibles
+4.5 Tipos de sección disponibles
 - Capítulo: Contenido principal del libro
 - Prólogo: Texto introductorio
 - Epílogo: Texto de cierre
@@ -80,32 +111,79 @@ El panel izquierdo muestra la estructura del libro en forma de árbol.
 - Colofón: Información de edición
 
 ==============================================
-4. EDICIÓN DE CONTENIDO
+5. EDICIÓN DE CONTENIDO
 ==============================================
 
-4.1 Panel de edición
+5.1 Panel de edición
 El panel derecho permite editar el contenido de la sección seleccionada.
 
-4.2 Campos editables
+5.2 Campos editables
 - Título: Nombre de la sección
 - Tipo: Tipo de sección (capítulo, prólogo, etc.)
 - Nivel: Nivel de encabezado (1-6)
 - Contenido: Texto en formato XHTML
 
-4.3 Botones de formato
+5.3 Botones de formato
 - H1, H2, H3: Insertar encabezados
 - P: Insertar párrafo
 - Lista: Insertar lista no ordenada
 - Cita: Insertar cita (blockquote)
+- Imagen: Insertar imagen (Ctrl+Shift+I)
 
-4.4 Guardar cambios
+5.4 Editor WYSIWYG (nuevo en v2.0)
+- Modo visual con formato en tiempo real
+- Botones: Negrita (Ctrl+B), Cursiva (Ctrl+I), Subrayado (Ctrl+U)
+- Selector de encabezados H1-H6
+- Listas ordenadas y no ordenadas
+- Alternancia entre modo visual y código
+
+5.5 Guardar cambios
 - Use el botón "Guardar cambios" o Ctrl+S
 
 ==============================================
-5. METADATOS DEL LIBRO
+6. IMÁGENES EN SECCIONES (nuevo en v2.0)
 ==============================================
 
-5.1 Metadatos Dublin Core (Ctrl+M)
+6.1 Insertar imagen
+- Use Ctrl+Shift+I o el botón "Imagen"
+- Seleccione el archivo de imagen
+- Ingrese el texto alternativo (OBLIGATORIO)
+- Opcionalmente añada descripción larga
+
+6.2 Formatos soportados
+- JPEG (.jpg, .jpeg)
+- PNG (.png)
+- GIF (.gif)
+- SVG (.svg)
+- WebP (.webp)
+
+6.3 Accesibilidad de imágenes
+- El texto alternativo es obligatorio
+- Use descripción larga para imágenes complejas
+- Las imágenes se incluyen automáticamente en el EPUB
+
+==============================================
+7. VISTA PREVIA (nuevo en v2.0)
+==============================================
+
+7.1 Abrir vista previa
+- Use F6 o el menú Ver > Vista previa
+- Muestra el libro con estilos CSS aplicados
+
+7.2 Navegación
+- Use los botones Anterior/Siguiente
+- Use las flechas izquierda/derecha
+- Haga clic en el índice para ir a una sección
+
+7.3 Actualizar
+- Use F5 o el botón Actualizar
+- Sincroniza con los cambios del editor
+
+==============================================
+8. METADATOS DEL LIBRO
+==============================================
+
+8.1 Metadatos Dublin Core (Ctrl+M)
 - Título: Nombre del libro (obligatorio)
 - Identificador: UUID único (obligatorio)
 - Idioma: Código BCP 47, ej: es, es-ES (obligatorio)
@@ -116,7 +194,7 @@ El panel derecho permite editar el contenido de la sección seleccionada.
 - Descripción: Sinopsis del libro
 - Temas: Palabras clave separadas por comas
 
-5.2 Metadatos de accesibilidad (Ctrl+Shift+M)
+8.2 Metadatos de accesibilidad (Ctrl+Shift+M)
 - Nivel WCAG: Versión y nivel de conformidad
 - Modos de acceso: Textual, visual, auditivo, táctil
 - Características: Tabla de contenidos, navegación, etc.
@@ -124,61 +202,76 @@ El panel derecho permite editar el contenido de la sección seleccionada.
 - Resumen: Descripción de accesibilidad en lenguaje natural
 
 ==============================================
-6. IMÁGENES Y PORTADA
+9. PORTADA
 ==============================================
 
-6.1 Agregar portada
+9.1 Agregar portada
 - Use el menú Proyecto > Portada
 - Seleccione una imagen JPG o PNG
 - Ingrese el texto alternativo (obligatorio)
-
-6.2 Imágenes en secciones
-- Las imágenes requieren texto alternativo obligatorio
-- Opcionalmente puede agregar descripción larga
+- Opcionalmente añada descripción larga
 
 ==============================================
-7. VALIDACIÓN
+10. VALIDACIÓN
 ==============================================
 
-7.1 Validación interna (F5)
+10.1 Validación interna (F5)
 Verifica:
 - Metadatos obligatorios completos
 - Todas las secciones tienen título
 - Imágenes tienen texto alternativo
 - Estructura de encabezados coherente
 
-7.2 EPUBCheck
+10.2 EPUBCheck
 Herramienta externa para validar estructura EPUB.
 Requiere Java instalado.
 
-7.3 Ace by DAISY
+10.3 Ace by DAISY
 Herramienta externa para validar accesibilidad.
 Requiere Node.js instalado.
 
 ==============================================
-8. PREFERENCIAS
+11. PREFERENCIAS
 ==============================================
 
 Acceda con el menú Herramientas > Preferencias:
+- Idioma de la interfaz (requiere reinicio)
 - Directorios por defecto
 - Guardado automático
 - Confirmación antes de eliminar
 - Mostrar panel de mensajes
 
 ==============================================
-9. CONSEJOS DE ACCESIBILIDAD
+12. IDIOMAS (nuevo en v2.0)
+==============================================
+
+La aplicación está disponible en:
+- Español (es)
+- English (en)
+- Français (fr)
+- Português (pt)
+- Català (ca)
+
+Para cambiar el idioma:
+1. Vaya a Herramientas > Preferencias
+2. Seleccione el idioma deseado
+3. Reinicie la aplicación
+
+==============================================
+13. CONSEJOS DE ACCESIBILIDAD
 ==============================================
 
 Para crear EPUB accesibles:
 - Use encabezados jerárquicos (h1, h2, h3...)
 - Proporcione texto alternativo a todas las imágenes
+- Use descripción larga para imágenes complejas
 - Use listas para enumerar elementos
 - Incluya tabla de contenidos
 - Complete el resumen de accesibilidad
 - Valide con Ace by DAISY antes de publicar
 
 ==============================================
-10. SOLUCIÓN DE PROBLEMAS
+14. SOLUCIÓN DE PROBLEMAS
 ==============================================
 
 Si la exportación falla:
@@ -190,6 +283,12 @@ Si la exportación falla:
 Si las herramientas de validación no funcionan:
 - EPUBCheck requiere Java instalado
 - Ace requiere Node.js y npm install -g @daisy/ace
+
+Si la exportación a PDF no funciona:
+- Instale WeasyPrint: pip install weasyprint
+
+Si la exportación a MOBI no funciona:
+- Instale Calibre desde https://calibre-ebook.com/download
 """
 	
 	def __init__(self, parent):

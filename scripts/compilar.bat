@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 >nul 2>&1
 REM Script para compilar la aplicacion con PyInstaller
 REM Maquetador de EPUB Accesibles
 
@@ -41,11 +42,14 @@ pyinstaller --name="MaquetadorEPUB" ^
     --windowed ^
     --onedir ^
     --add-data="src/recursos;src/recursos" ^
+    --add-data="src/locales;src/locales" ^
     --hidden-import=wx ^
+    --hidden-import=wx.html2 ^
     --hidden-import=ebooklib ^
     --hidden-import=markdown ^
     --hidden-import=bs4 ^
     --hidden-import=lxml ^
+    --hidden-import=weasyprint ^
     main.py
 
 if errorlevel 1 (

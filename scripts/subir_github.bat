@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 >nul 2>&1
 REM Script para subir el proyecto a GitHub
 REM Maquetador de EPUB Accesibles
 REM Repositorio: https://github.com/hxebolax/maquetador-epub-accesible
@@ -22,6 +23,11 @@ if errorlevel 1 (
     pause
     exit /b 1
 )
+
+REM Configurar Git para usar UTF-8
+git config --global core.quotepath false >nul 2>&1
+git config --global i18n.commitencoding utf-8 >nul 2>&1
+git config --global i18n.logoutputencoding utf-8 >nul 2>&1
 
 echo Git encontrado.
 echo.
@@ -60,7 +66,7 @@ git add .
 REM Hacer commit inicial
 echo.
 set /p mensaje_commit="Mensaje del commit (Enter para 'Initial commit'): "
-if "!mensaje_commit!"=="" set mensaje_commit=Initial commit: Maquetador de EPUB Accesibles v1.0.0
+if "!mensaje_commit!"=="" set mensaje_commit=Initial commit: Maquetador de EPUB Accesibles v2.0.0
 
 git commit -m "!mensaje_commit!"
 if errorlevel 1 (

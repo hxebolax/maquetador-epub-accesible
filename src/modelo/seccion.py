@@ -137,18 +137,27 @@ class Seccion:
 		"""
 		self.imagenes.append(imagen)
 	
-	def eliminar_imagen(self, imagen) -> bool:
+	def eliminar_imagen(self, imagen_o_id) -> bool:
 		"""
 		Elimina una imagen de la sección.
 		
 		Args:
-			imagen: Imagen a eliminar
+			imagen_o_id: Imagen a eliminar o su ID
 		
 		Returns:
 			bool: True si se eliminó correctamente
 		"""
+		# Si es un string, buscar por ID
+		if isinstance(imagen_o_id, str):
+			for img in self.imagenes:
+				if img.id == imagen_o_id:
+					self.imagenes.remove(img)
+					return True
+			return False
+		
+		# Si es un objeto Imagen
 		try:
-			self.imagenes.remove(imagen)
+			self.imagenes.remove(imagen_o_id)
 			return True
 		except ValueError:
 			return False

@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 >nul 2>&1
 REM Script para crear una release en GitHub
 REM Maquetador de EPUB Accesibles
 REM Repositorio: https://github.com/hxebolax/maquetador-epub-accesible
@@ -49,7 +50,7 @@ echo Autenticacion verificada.
 echo.
 
 REM Pedir version
-set /p VERSION="Ingrese la version (ej: 1.0.0): "
+set /p VERSION="Ingrese la version (ej: 2.0.0): "
 if "!VERSION!"=="" (
     echo ERROR: Debe proporcionar una version.
     pause
@@ -89,7 +90,7 @@ goto :leer_descripcion
 
 REM Si no hay descripcion, usar una por defecto
 if "!DESCRIPCION!"=="" (
-    set "DESCRIPCION=Release version !VERSION! del Maquetador de EPUB Accesibles."
+    set "DESCRIPCION=Release version !VERSION! - Maquetador de EPUB Accesibles."
 )
 
 echo.
